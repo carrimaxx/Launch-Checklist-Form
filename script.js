@@ -13,9 +13,22 @@ window.addEventListener("load", function () {
   const launchStatus = document.getElementById("launchStatus");
   const missionTarget = document.getElementById("missionTarget");
 
+  // Functions
+  // Format pilot/copilot input function
   String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
   };
+  // launchStatus functions
+  function redStatus() {
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.style.color = "red";
+  }
+  function greenStatus() {
+    cargoStatus.innerHTML = "Cargo mass low enough for launch";
+    fuelStatus.innerHTML = "Fuel level high enough for launch";
+    launchStatus.innerHTML = "Shuttle is ready for launch";
+    launchStatus.style.color = "green";
+  }
 
   // Fetching Planetary Data (+ Bonus mission: randomize)
   fetch("https://handlers.education.launchcode.org/static/planets.json").then(
@@ -62,18 +75,6 @@ window.addEventListener("load", function () {
         pilotStatus.innerHTML = `Pilot ${pilotName.value.capitalize()} is ready for launch`;
         copilotStatus.innerHTML = `Co-pilot ${copilotName.value.capitalize()} is ready for launch`;
         faultyItems.style.visibility = "visible";
-
-        // launchStatus functions
-        function redStatus() {
-          launchStatus.innerHTML = "Shuttle not ready for launch";
-          launchStatus.style.color = "red";
-        }
-        function greenStatus() {
-          cargoStatus.innerHTML = "Cargo mass low enough for launch";
-          fuelStatus.innerHTML = "Fuel level high enough for launch";
-          launchStatus.innerHTML = "Shuttle is ready for launch";
-          launchStatus.style.color = "green";
-        }
 
         if (
           Number(fuelLevel.value) < 10000 ||
