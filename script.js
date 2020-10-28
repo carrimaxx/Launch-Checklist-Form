@@ -14,7 +14,7 @@ window.addEventListener("load", function () {
   const missionTarget = document.getElementById("missionTarget");
 
   String.prototype.capitalize = function () {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+    return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
   };
 
   // Fetching Planetary Data (+ Bonus mission: randomize)
